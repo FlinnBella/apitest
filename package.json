@@ -1,0 +1,26 @@
+{
+  "name": "symsense-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./api/server.ts",
+  "scripts": {
+    "start": "tsx ./api/server.ts",
+    "dev": "tsx ./api/server.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^1.1.0",
+    "@google/generative-ai": "^0.2.1",
+    "axios": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "form-data": "^4.0.2",
+    "multer": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "nodemon": "^3.1.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.0.0"
+  }
+}
