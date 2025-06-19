@@ -53,10 +53,20 @@ router.get("/doctors/:zipCode", async (req, res) => {
       const uniqueResults = Array.from(
         new Map(allResults.map((doctor: any) => [doctor.number, doctor])).values()
       );
+      const allowedFields = ['addresses', 'practiceLocations', 'basic', 'taxonomies'];
+      const filteredData = uniqueResults.map(item => {
+        const filtered = {};
+        allowedFields.forEach(field => {
+          if (item[field] !== undefined) {
+            filtered[field] = item[field];
+          }
+        });
+        return filtered;
+      });
   
       res.json({
-        result_count: uniqueResults.length,
-        results: uniqueResults
+        result_count: filteredData.length,
+        results: filteredData
       });
     } catch (error) {
       console.error("Error fetching data from NPI Registry API:", error);
