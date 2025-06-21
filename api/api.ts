@@ -61,6 +61,7 @@ router.get("/doctors/:zipCode", async (req, res) => {
             filtered[field] = item[field];
           }
         });
+        console.log('success!');
         return filtered;
       });
   
