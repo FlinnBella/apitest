@@ -35,7 +35,7 @@ router.get("/doctors/:zipCode", async (req, res) => {
       if (specialtiesArray.length > 0) {
         const searchPromises = specialtiesArray.map(specialty =>
           axios.get(
-            `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&taxonomy_description=${encodeURIComponent(specialty)}&postal_code=${zipCode}&limit=10`
+            `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&taxonomy_description=${encodeURIComponent(specialty)}&postal_code=${zipCode}&limit=5`
           )
         );
   
@@ -44,7 +44,7 @@ router.get("/doctors/:zipCode", async (req, res) => {
       } else {
         // If no specialties provided, search for all doctors in the area
         const response = await axios.get(
-          `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&postal_code=${zipCode}&limit=10`
+          `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&postal_code=${zipCode}&limit=5`
         );
         allResults = response.data.results || [];
       }
@@ -89,7 +89,7 @@ router.post("/doctors", async (req, res) => {
       if (specialties && specialties.length > 0) {
         const searchPromises = specialties.map(specialty =>
           axios.get(
-            `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&taxonomy_description=${encodeURIComponent(specialty)}&postal_code=${zipCode}&limit=10`
+            `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&taxonomy_description=${encodeURIComponent(specialty)}&postal_code=${zipCode}&limit=5`
           )
         );
   
@@ -98,7 +98,7 @@ router.post("/doctors", async (req, res) => {
       } else {
         // If no specialties provided, search for all doctors in the area
         const response = await axios.get(
-          `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&postal_code=${zipCode}&limit=10`
+          `https://npiregistry.cms.hhs.gov/api/?version=2.1&enumeration_type=NPI-1&postal_code=${zipCode}&limit=5`
         );
         allResults = response.data.results || [];
       }
